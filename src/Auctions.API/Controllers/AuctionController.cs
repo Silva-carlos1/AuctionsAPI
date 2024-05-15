@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Auctions.API.UseCases.Auctions.GetCurrent;
+using Auctions.API.Entities;
 
 namespace Auctions.API.Controllers;
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class AuctionController : ControllerBase
 {
