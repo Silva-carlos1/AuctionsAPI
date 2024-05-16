@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Auctions.API.UseCases.Auctions.GetCurrent;
 using Auctions.API.Entities;
+using System.Runtime.Serialization;
 
 namespace Auctions.API.Controllers;
-[Route("[controller]")]
-[ApiController]
-public class AuctionController : ControllerBase
+
+public class AuctionController : AuctionsBaseController
 {
     [HttpGet]
     [ProducesResponseType(typeof(Auction), StatusCodes.Status200OK)]
@@ -21,4 +21,6 @@ public class AuctionController : ControllerBase
 
         return Ok(result);
     }
+
+    
 }
