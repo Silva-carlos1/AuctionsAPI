@@ -6,7 +6,8 @@ namespace Auctions.API.Controllers;
 public class OfferController : AuctionsBaseController
 {
     [HttpPost]
-    public IActionResult CreateOffer()
+    [Route("{itemId}")]
+    public IActionResult CreateOffer([FromRoute]int itemId)
     {
         return Created();
     }
