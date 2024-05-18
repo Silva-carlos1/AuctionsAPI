@@ -1,4 +1,5 @@
-﻿using Auctions.API.Entities;
+﻿using Auctions.API.Contracts;
+using Auctions.API.Entities;
 using Auctions.API.Repositories;
 
 namespace Auctions.API.Services;
@@ -6,20 +7,20 @@ namespace Auctions.API.Services;
 public class LoggedUser
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IUserRepository _repository;
 
-    public LoggedUser(IHttpContextAccessor httpContext)
+    public LoggedUser(IHttpContextAccessor httpContext, IUserRepository repository)
     {
         _httpContextAccessor = httpContext;
+        _repository = repository;
     }
 
     public User User()
     {
-        var repository = new AuctionsDbContext();
-
         var token = TokenOnRequest();
         var email = FromBase64String(token);
 
-        return repository.Users.First();
+        return _repository.GetUserByEmail(email);
     }
 
     private string TokenOnRequest()
