@@ -1,6 +1,8 @@
 using Auctions.API.Filters;
+using Auctions.API.Repositories;
 using Auctions.API.Services;
 using Auctions.API.UseCases.Offers.CreateOffer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 
@@ -46,6 +48,11 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddScoped<AuthenticationUserAttribute>();
 builder.Services.AddScoped<LoggedUser>();
 builder.Services.AddScoped<CreateOfferUseCase>();
+
+builder.Services.AddDbContext<AuctionsDbContext>(options =>
+{
+       options.UseSqlite("Data Source=C:\\Users\\duduo\\OneDrive\\Documentos\\C#\\auction.db");
+});
 
 builder.Services.AddHttpContextAccessor();
 
